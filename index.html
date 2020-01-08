@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>My-APIs</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-signin-client_id" content="410473091666-8icl72bsjqo3ib5pjhu5usker94p4jij.apps.googleusercontent.com">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-wrapper purple accent-4">
+                <a href="index.html" class="brand-logo center">My-APIs</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="rick.html">Rick And Morty</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <p><div class="g-signin2"  onclick="ClickLogin()" data-onsuccess="onSignIn"></div></p>
+<!--    <p><div class="g-signin2" onclick="onSignIn()"></div></p>-->
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+<!--    <script src="app.js"></script>-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+        var clicked=false;
+        function ClickLogin() {
+            clicked=true;
+        }
+        function onSignIn(googleUser) {
+            if (clicked){
+                try{
+                    var profile = googleUser.getBasicProfile();
+                    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                    console.log('Name: ' + profile.getName());
+                    console.log('Image URL: ' + profile.getImageUrl());
+                    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+                    if (profile.getId !=null){
+                        window.location="rick.html"
+                    }
+                    // window.location="rick.html"
+                }
+                catch (e) {
+                    console.log("connection failed")
+                }
+            }
+            else {
+                console.log("error condition")
+            }
+
+
+        }</script>
+
+</body>
+
+</html>
